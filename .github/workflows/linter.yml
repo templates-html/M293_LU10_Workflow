@@ -33,3 +33,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
+        with:
+          base: ${{ github.head_ref }}
