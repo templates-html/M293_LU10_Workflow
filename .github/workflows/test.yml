@@ -1,4 +1,4 @@
-name: Copy Issues from another repository
+name: Create pull request
 
 on:
   workflow_dispatch
