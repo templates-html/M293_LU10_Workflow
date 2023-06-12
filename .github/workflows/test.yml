@@ -1,0 +1,20 @@
+name: Copy Issues from another repository
+
+on:
+  workflow_dispatch
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  create-pull:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          branch: patches

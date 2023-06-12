@@ -29,8 +29,3 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          base: ${GITHUB_REF_NAME}
-          branch: patches
