@@ -1,6 +1,6 @@
 name: Create pull request manually
 on:
-  push
+  workflow_dispatch
 
 permissions:
   checks: write
