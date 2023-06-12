@@ -31,11 +31,5 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  create-pull:
-    needs: run-lint
-    if: ${{ !contains(github.actor, 'classroom') }}
-    name: Create pull request if linter was successful
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create Pull Request
+      - name: Create pull request
         uses: peter-evans/create-pull-request@v5
