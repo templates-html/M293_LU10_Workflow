@@ -32,5 +32,5 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with:
-          base: ${GITHUB_REF##*/}
+          base: ${{ GITHUB_REF##*/ }}
           branch: patches
