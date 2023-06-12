@@ -1,6 +1,6 @@
 name: Create pull request manually
 on:
-  workflow_dispatch
+  push
 
 permissions:
   checks: write
@@ -11,7 +11,7 @@ jobs:
   create-pull:
     runs-on: ubuntu-latest
     steps:
-      - run: gh pr create -B main -H develop --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+      - run: gh pr create -B main --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
