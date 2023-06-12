@@ -1,5 +1,4 @@
-name: Create pull request
-
+name: Create pull request manually
 on:
   workflow_dispatch
 
@@ -12,9 +11,11 @@ jobs:
   create-pull:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v5
+        uses: devops-infra/action-pull-request@v0.5.5
         with:
-          branch: patches
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          target_branch: main
+          title: Patches
