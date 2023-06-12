@@ -5,14 +5,13 @@ on:
     branches:
       - '**'        # matches every branch
       - '!master'   # excludes master
-      - '!main'   # excludes master
-  pull_request:
-    branches: [ "main" ]
+      - '!main'     # excludes main
 
 permissions:
   checks: write
   actions: read
   contents: read
+  pull-requests: write
 
 jobs:
   run-lint:
@@ -32,10 +31,11 @@ jobs:
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   create-pull:
-    needs: run-lint
-    if: ${{ !contains(github.actor, 'classroom') }}
-    name: Create pull request if linter was successful
     runs-on: ubuntu-latest
     steps:
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+      - uses: actions/checkout@v3
+      - name: pull-request
+        run: |
+          gh pr create --base main --title "My pull request" --body "Description"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

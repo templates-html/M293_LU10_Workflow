@@ -1,5 +1,4 @@
-name: Copy Issues from another repository
-
+name: Create pull request manually
 on:
   workflow_dispatch
 
@@ -7,14 +6,16 @@ permissions:
   checks: write
   actions: read
   contents: read
+  pull-requests: write
 
 jobs:
   create-pull:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          branch: patches
+      - uses: actions/checkout@v3
+      - name: pull-request
+        run: |
+          gh pr create -B main --title "My pull request" --body "Description"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
