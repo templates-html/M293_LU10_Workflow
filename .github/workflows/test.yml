@@ -1,5 +1,4 @@
-name: Copy Issues from another repository
-
+name: Create pull request manually
 on:
   workflow_dispatch
 
@@ -18,5 +17,4 @@ jobs:
         uses: devops-infra/action-pull-request@v0.5.5
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          target_branch: main
           title: Patches
