@@ -11,7 +11,10 @@ jobs:
   create-pull:
     runs-on: ubuntu-latest
     steps:
-      - run: gh pr create -B main --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+      - uses: actions/checkout@v3
+      - name: pull-request
+        run: |
+          gh pr create -B main --title "My pull request" --body "Description"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
