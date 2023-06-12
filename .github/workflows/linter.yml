@@ -5,9 +5,7 @@ on:
     branches:
       - '**'        # matches every branch
       - '!master'   # excludes master
-      - '!main'   # excludes master
-  pull_request:
-    branches: [ "main" ]
+      - '!main'     # excludes main
 
 permissions:
   checks: write
@@ -34,4 +32,5 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with:
-          base: "main"
+          base: ${GITHUB_REF##*/}
+          branch: patches
