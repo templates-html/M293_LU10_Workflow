@@ -11,6 +11,7 @@ permissions:
   checks: write
   actions: read
   contents: read
+  pull-requests: write
 
 jobs:
   run-lint:
@@ -28,4 +29,13 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: "main"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  create-pull:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: pull-request
+        run: |
+          gh pr create -B main --fill
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
