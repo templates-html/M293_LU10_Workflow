@@ -12,7 +12,9 @@ jobs:
   create-pull:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v5
+      - name: Run the Action
+        uses: devops-infra/action-pull-request@v0.5.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          target_branch: main
+          title: Patches
